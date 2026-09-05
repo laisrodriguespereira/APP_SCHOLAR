@@ -118,4 +118,4 @@ appscholar/
 
 ## Autor
 
-**Laís Rodrigues**
+**Laís Rodrigues Pereira**
