@@ -107,6 +107,23 @@ appscholar/
 * Expo
 * Um dispositivo Android/iOS ou um emulador compatível
 
+## Como executar
+
+### Pré-requisitos
+- Node.js
+- Expo CLI
+- Um dispositivo Android/iOS com o app Expo Go, ou um emulador
+
+### Passos
+1. Clone o repositório:
+   git clone https://github.com/laisrodriguespereira/APP_SCHOLAR.git
+2. Acesse a pasta do projeto:
+   cd APP_SCHOLAR
+3. Instale as dependências:
+   npm install
+4. Inicie a aplicação:
+   npm start
+5. Escaneie o QR Code com o Expo Go ou pressione "w" para abrir no navegador
 
 ## Curso
 
