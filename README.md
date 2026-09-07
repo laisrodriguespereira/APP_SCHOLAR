@@ -1,10 +1,12 @@
 # APP_SCHOLAR
-App mobile em React Native (Expo) para gestão escolar — CRUD de alunos, professores, turmas, cursos, disciplinas, matrículas, responsáveis, avaliações, coordenadores e boletins, modelado a partir de um banco MySQL/MariaDB.
+App mobile em React Native (Expo) para gestão escolar — CRUD de alunos, professores, turmas, cursos, disciplinas, matrículas, responsáveis, avaliações, coordenadores e boletins, modelado com base em um esquema de banco de dados MySQL/MariaDB, utilizando dados simulados na versão atual da aplicação.
 # APP_SCHOLAR
 
 ## Sobre o projeto
 
 O APP_SCHOLAR é uma aplicação mobile desenvolvida para auxiliar no gerenciamento de informações acadêmicas. O sistema permite organizar e consultar dados relacionados a alunos, professores, turmas, cursos, disciplinas, matrículas, responsáveis, avaliações, coordenadores e boletins.
+
+O projeto foi modelado com base em um esquema de banco de dados MySQL/MariaDB. Na versão atual, os dados são simulados diretamente no código, servindo como base para uma futura integração com o banco real.
 
 O objetivo do projeto é oferecer uma interface simples e organizada para centralizar informações escolares e facilitar o gerenciamento dos principais registros acadêmicos.
 
