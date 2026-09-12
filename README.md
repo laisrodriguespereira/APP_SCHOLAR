@@ -44,6 +44,14 @@ O projeto está organizado de forma a separar as telas e os arquivos principais 
 
 ```text
 appscholar/
+├── api/
+│   ├── alunos.php
+│   ├── cadastrar_aluno.php
+│   ├── editar_aluno.php
+│   ├── excluir_aluno.php
+│   ├── teste_conexao.php
+│   └── conexao.exemplo.php
+│
 ├── assets/
 │   ├── logo.png
 │
