@@ -38,3 +38,6 @@ yarn-error.*
 # Pastas nativas geradas
 /ios
 /android
+
+# Credenciais do banco de dados
+api/conexao.php
