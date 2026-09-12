@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import HomeScreen from './Screen/HomeScreen';
 import SobreScreen from './Screen/SobreScreen';
@@ -33,28 +33,8 @@ import ConsultaBoletinsScreen from './Screen/ConsultaBoletinsScreen';
 import CadastroBoletimScreen from './Screen/CadastroBoletimScreen';
 import EditarBoletimScreen from './Screen/EditarBoletimScreen';
 
-const alunosIniciais = [
-  {
-    id: '1',
-    ra_aluno: '2024001',
-    nome: 'João Pedro Silva',
-    data_de_nascimento: '15/03/2006',
-    cpf: '12345678901',
-    numero_da_casa: '120',
-    complemento: '',
-    status: 'A',
-  },
-  {
-    id: '2',
-    ra_aluno: '2024002',
-    nome: 'Maria Eduarda Santos',
-    data_de_nascimento: '22/07/2005',
-    cpf: '98765432100',
-    numero_da_casa: '45',
-    complemento: 'Apto 12',
-    status: 'A',
-  },
-];
+// Endereço base da API PHP. Troque SEU_IP pelo IPv4 do seu computador (o mesmo do ipconfig).
+const API_URL = "http://192.168.0.8/app_scholar_api";
 
 const professoresIniciais = [
   {
@@ -152,7 +132,7 @@ const boletinsIniciais = [
 export default function App() {
   const [telaAtual, setTelaAtual] = useState('Home');
 
-  const [alunos, setAlunos] = useState(alunosIniciais);
+  const [alunos, setAlunos] = useState([]);
   const [alunoSelecionado, setAlunoSelecionado] = useState(null);
 
   const [professores, setProfessores] = useState(professoresIniciais);
@@ -182,20 +162,59 @@ export default function App() {
   const [boletins, setBoletins] = useState(boletinsIniciais);
   const [boletimSelecionado, setBoletimSelecionado] = useState(null);
 
-  function adicionarAluno(novoAluno) {
-    setAlunos([...alunos, novoAluno]);
+  const buscarAlunos = async () => {
+    try {
+      const resposta = await fetch(`${API_URL}/alunos.php`);
+      const dados = await resposta.json();
+      setAlunos(dados);
+    } catch (erro) {
+      console.log("Erro ao buscar alunos:", erro);
+    }
+  };
+
+  useEffect(() => {
+    buscarAlunos();
+  }, []);
+
+  async function adicionarAluno(novoAluno) {
+    try {
+      await fetch(`${API_URL}/cadastrar_aluno.php`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(novoAluno),
+      });
+      await buscarAlunos();
+    } catch (erro) {
+      console.log("Erro ao cadastrar aluno:", erro);
+    }
     setTelaAtual('Alunos');
   }
 
-  function atualizarAluno(alunoAtualizado) {
-    setAlunos(
-      alunos.map((a) => (a.id === alunoAtualizado.id ? alunoAtualizado : a))
-    );
+  async function atualizarAluno(alunoAtualizado) {
+    try {
+      await fetch(`${API_URL}/editar_aluno.php`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(alunoAtualizado),
+      });
+      await buscarAlunos();
+    } catch (erro) {
+      console.log("Erro ao editar aluno:", erro);
+    }
     setTelaAtual('Alunos');
   }
 
-  function excluirAluno(id) {
-    setAlunos(alunos.filter((a) => a.id !== id));
+  async function excluirAluno(id) {
+    try {
+      await fetch(`${API_URL}/excluir_aluno.php`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      await buscarAlunos();
+    } catch (erro) {
+      console.log("Erro ao excluir aluno:", erro);
+    }
     setTelaAtual('Alunos');
   }
 
