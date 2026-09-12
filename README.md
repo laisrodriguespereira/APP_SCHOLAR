@@ -127,6 +127,21 @@ appscholar/
    npm start
 5. Escaneie o QR Code com o Expo Go ou pressione "w" para abrir no navegador
 
+## Como funciona a conexão com o banco de dados
+
+O aplicativo não acessa o banco de dados diretamente. A comunicação segue este caminho:
+
+1. **App (React Native)** — ao abrir a tela de Alunos, é executada uma função com `fetch()` que faz uma requisição para o endereço da API em PHP, usando o IP local do computador na rede Wi-Fi.
+
+2. **API (PHP)** — o arquivo `alunos.php` recebe essa requisição, usa o `conexao.php` para se conectar ao banco `escolar` via PDO, e executa um `SELECT` na tabela `alunos`. Como a tabela usa o campo `id_alunos` em vez de `id`, o próprio SELECT já converte esse nome (`id_alunos AS id`), entregando os dados no formato que a tela do app espera.
+
+3. **Resposta** — os registros são retornados com `fetchAll(PDO::FETCH_ASSOC)` e convertidos em JSON com `json_encode()`.
+
+4. **Volta ao App** — o `fetch()` recebe essa resposta, converte com `.json()`, e guarda o resultado em um estado do React com `setAlunos(dados)`. A tela recarrega automaticamente, exibindo os alunos reais do banco, em vez dos dados fixos que existiam antes.
+
+### Observação sobre o ambiente
+O projeto passou a ser executado localmente (fora do Expo Snack), com o Expo atualizado para o SDK 57 — necessário porque o Expo Go instalado no celular já estava em uma versão mais nova do que a suportada pelo Snack.
+
 ## Curso
 
 **Desenvolvimento de Sistemas**
