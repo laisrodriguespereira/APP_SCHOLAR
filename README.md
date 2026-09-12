@@ -6,7 +6,7 @@ App mobile em React Native (Expo) para gestão escolar — CRUD de alunos, profe
 
 O APP_SCHOLAR é uma aplicação mobile desenvolvida para auxiliar no gerenciamento de informações acadêmicas. O sistema permite organizar e consultar dados relacionados a alunos, professores, turmas, cursos, disciplinas, matrículas, responsáveis, avaliações, coordenadores e boletins.
 
-O projeto foi modelado com base em um esquema de banco de dados MySQL/MariaDB. Na versão atual, os dados são simulados diretamente no código, servindo como base para uma futura integração com o banco real.
+O projeto foi modelado com base em um esquema de banco de dados MySQL/MariaDB. O módulo de Alunos já está conectado ao banco de dados real; os demais módulos (professores, turmas, cursos, etc.) ainda utilizam dados simulados.
 
 O objetivo do projeto é oferecer uma interface simples e organizada para centralizar informações escolares e facilitar o gerenciamento dos principais registros acadêmicos.
 
@@ -28,15 +28,19 @@ O objetivo do projeto é oferecer uma interface simples e organizada para centra
 * Tela inicial com acesso às principais áreas do sistema
 * Tela de informações sobre a aplicação
 
+> No momento, apenas o módulo de Alunos está integrado ao banco de dados MySQL. Os demais módulos ainda utilizam dados simulados diretamente no código.
+
 ## Tecnologias utilizadas
 
-* React Native
-* JavaScript
-* Expo
-* React Native Paper
-* Expo Vector Icons
-* Git
-* GitHub
+React Native
+JavaScript
+Expo
+React Native Paper
+Expo Vector Icons
+PHP
+MySQL / MariaDB
+Git
+GitHub
 
 ## Estrutura do projeto
 
@@ -44,7 +48,7 @@ O projeto está organizado de forma a separar as telas e os arquivos principais 
 
 ```text
 appscholar/
-├── api/
+├── app_scholar_api/
 │   ├── alunos.php
 │   ├── cadastrar_aluno.php
 │   ├── editar_aluno.php
@@ -99,6 +103,7 @@ appscholar/
 
 ### Principais arquivos e pastas
 
+* **app_scholar_api/**: contém os arquivos PHP responsáveis por conectar o aplicativo ao banco de dados MySQL. O arquivo conexao.php (com as credenciais reais) não é enviado ao GitHub; conexao.exemplo.php serve como modelo de configuração.
 * **App.js:** arquivo principal da aplicação, responsável pela navegação entre as telas e pelo gerenciamento dos dados.
 * **Screen/:** contém as telas de consulta, cadastro e edição das diferentes informações acadêmicas.
 * **assets/:** armazena imagens e recursos visuais utilizados pela aplicação, incluindo o logotipo.
@@ -110,19 +115,10 @@ appscholar/
 ## Como executar
 
 ### Pré-requisitos
-
-É necessário ter instalado:
-
-* Node.js
-* Expo
-* Um dispositivo Android/iOS ou um emulador compatível
-
-## Como executar
-
-### Pré-requisitos
 - Node.js
 - Expo CLI
 - Um dispositivo Android/iOS com o app Expo Go, ou um emulador
+- XAMPP (ou outro servidor com PHP e MySQL) rodando localmente, com o banco escolar configurado
 
 ### Passos
 1. Clone o repositório:
