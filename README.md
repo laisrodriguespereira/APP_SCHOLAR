@@ -96,6 +96,7 @@ appscholar/
 ├── App.js
 ├── index.js
 ├── app.json
+├── escolar.sql
 ├── package.json
 ├── .gitignore
 ├── videos_app_scholar.txt
