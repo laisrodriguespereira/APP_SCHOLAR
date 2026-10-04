@@ -6,7 +6,7 @@ App mobile em React Native (Expo) para gestão escolar — CRUD de alunos, profe
 
 O APP_SCHOLAR é uma aplicação mobile desenvolvida para auxiliar no gerenciamento de informações acadêmicas. O sistema permite organizar e consultar dados relacionados a alunos, professores, turmas, cursos, disciplinas, matrículas, responsáveis, avaliações, coordenadores e boletins.
 
-O projeto foi modelado com base em um esquema de banco de dados MySQL/MariaDB. O módulo de Alunos já está conectado ao banco de dados real; os demais módulos (professores, turmas, cursos, etc.) ainda utilizam dados simulados.
+O projeto foi modelado com base em um esquema de banco de dados MySQL/MariaDB. Na versão atual, o módulo de Alunos está integrado ao banco de dados real e os demais módulos utilizam dados simulados.
 
 O objetivo do projeto é oferecer uma interface simples e organizada para centralizar informações escolares e facilitar o gerenciamento dos principais registros acadêmicos.
 
@@ -47,7 +47,7 @@ GitHub
 O projeto está organizado de forma a separar as telas e os arquivos principais da aplicação.
 
 ```text
-appscholar/
+APP_SCHOLAR/
 ├── app_scholar_api/
 │   ├── alunos.php
 │   ├── cadastrar_aluno.php
@@ -113,11 +113,11 @@ appscholar/
 * **assets/:** armazena imagens e recursos visuais utilizados pela aplicação, incluindo o logotipo.
 * **package.json:** contém as dependências e os comandos utilizados para executar o projeto.
 * **app.json:** arquivo de configuração do projeto Expo.
-* **dicionario_dados.pdf:** dicionário de dados do banco escolar.
-* **escolar.sql:** banco de dados utilizado.
-* **modelagem_escolar.brM3:** modelagem do banco escolar.
+* **dicionario_dados.pdf:** dicionário de dados do banco escolar, com a descrição das tabelas e dos campos.
+* **escolar.sql:** SQL com a criação das tabelas e dos dados do banco escolar, para ser importado no MySQL/MariaDB.
+* **modelagem_escolar.brM3:** modelagem do banco escolar, feita no BrModelo.
 * **index.js:** ponto de entrada da aplicação.
-* **videos_app_scholar.txt:** tem um link do drive onde leva para os vídeos explicativos sobre o app.
+* **videos_app_scholar.txt:** contém o link do Google Drive com os vídeos explicativos sobre o app.
 * **.gitignore:** define arquivos e pastas que não devem ser enviados para o controle de versão.
 
 ## Como executar
@@ -126,7 +126,7 @@ appscholar/
 - Node.js
 - Expo CLI
 - Um dispositivo Android/iOS com o app Expo Go, ou um emulador
-- XAMPP (ou outro servidor com PHP e MySQL) rodando localmente, com o banco escolar configurado
+- XAMPP (ou outro servidor com PHP e MySQL) instalado no computador
 
 ### Passos
 1. Clone o repositório:
@@ -135,9 +135,13 @@ appscholar/
    cd APP_SCHOLAR
 3. Instale as dependências:
    npm install
-4. Inicie a aplicação:
+4. Abra o XAMPP, inicie o Apache e o MySQL e importe o arquivo escolar.sql pelo phpMyAdmin (aba Importar). O banco se chama escolar.sql
+5. Na pasta app_scholar_api/, copie conexao.exemplo.php para conexao.php e preencha com os dados do seu banco (servidor, nome do banco, usuário e senha)
+6. Copie a pasta app_scholar_api/ para a pasta htdocs do XAMPP
+7. Descubra o endereço IP do computador na rede Wi-Fi (no Windows, use o comando ipconfig) e configure-o no endereço da API utilizado pelo aplicativo.
+8. Inicie a aplicação:
    npm start
-5. Escaneie o QR Code com o Expo Go ou pressione "w" para abrir no navegador
+9. Escaneie o QR Code com o Expo Go ou pressione "w" para abrir no navegador
 
 ## Como funciona a conexão com o banco de dados
 
